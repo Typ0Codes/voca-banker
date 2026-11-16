@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ctyade3bdat85"]
+
+[ext_resource type="Script" uid="uid://bbjoyv6u2ip1c" path="res://main.gd" id="1_glv2v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glv2v"]
+bg_color = Color(0.11764706, 0.10980392, 0.16862746, 1)
+
+[node name="Control" type="Control" unique_id=337417755]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_glv2v")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1454118700]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 651.0
+color = Color(0.11644999, 0.1105, 0.17, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=390732038]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PopupPanel" type="PopupPanel" parent="." unique_id=711664811]
+oversampling_override = 1.0
+title = "Setup"
+initial_position = 1
+size = Vector2i(350, 375)
+unresizable = false
+borderless = false
+force_native = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_glv2v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel" unique_id=110550630]
+offset_right = 350.0
+offset_bottom = 375.0
+
+[node name="Label" type="Label" parent="PopupPanel/VBoxContainer" unique_id=1191186717]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "VocaBanker Setup"
+horizontal_alignment = 1
+
+[node name="Container" type="Container" parent="PopupPanel/VBoxContainer" unique_id=1189708761]
+custom_minimum_size = Vector2(0, 10.085)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PopupPanel/VBoxContainer" unique_id=1266297692]
+layout_mode = 2
+text = "Path To Refrence Voice Bank"
+
+[node name="LineEdit" type="LineEdit" parent="PopupPanel/VBoxContainer" unique_id=2075003122]
+layout_mode = 2
+placeholder_text = "Path To Refrence Voice Bank"
