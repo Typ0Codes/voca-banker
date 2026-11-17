@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ctyade3bdat85"]
 
 [ext_resource type="Script" uid="uid://bbjoyv6u2ip1c" path="res://main.gd" id="1_glv2v"]
-[ext_resource type="Texture2D" uid="uid://b8v12y4vwpcbf" path="res://teto.bmp" id="2_uu6xs"]
 
 [node name="Control" type="Control" unique_id=337417755]
 layout_mode = 3
@@ -14,8 +13,10 @@ script = ExtResource("1_glv2v")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1454118700]
 layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 651.0
+offset_left = -765.0
+offset_top = -185.0
+offset_right = 2123.0
+offset_bottom = 1025.0
 color = Color(0.11644999, 0.1105, 0.17, 1)
 
 [node name="PFP" type="TextureRect" parent="." unique_id=390732038]
@@ -23,7 +24,6 @@ layout_mode = 0
 offset_top = 24.895
 offset_right = 100.0
 offset_bottom = 124.895004
-texture = ExtResource("2_uu6xs")
 
 [node name="PopupPanel" type="Window" parent="." unique_id=1963537251]
 transparent_bg = true
@@ -67,6 +67,19 @@ placeholder_text = "Path To Refrence Voice Bank"
 layout_mode = 2
 text = "Enter"
 
+[node name="PopupDone" type="Button" parent="PopupPanel" unique_id=689981141]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -31.0
+offset_right = 24.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Done"
+
 [node name="Label" type="Label" parent="." unique_id=558124938]
 layout_mode = 0
 offset_right = 40.0
@@ -83,5 +96,15 @@ text = "Name"
 
 [node name="SamplePlayer" type="AudioStreamPlayer" parent="." unique_id=1862375927]
 
+[node name="SamplePlayButton" type="Button" parent="." unique_id=1160686589]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 52.0
+offset_right = 208.0
+offset_bottom = 83.0
+text = "Play Sample"
+
 [connection signal="close_requested" from="PopupPanel" to="." method="_on_popup_panel_close_requested"]
 [connection signal="pressed" from="PopupPanel/VBoxContainer/HBoxContainer/PopupRefBankEnter" to="." method="_on_popup_ref_bank_enter_pressed"]
+[connection signal="pressed" from="PopupPanel/PopupDone" to="." method="_on_popup_done_pressed"]
+[connection signal="pressed" from="SamplePlayButton" to="." method="_on_sample_play_button_pressed"]
