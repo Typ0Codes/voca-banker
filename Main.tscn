@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://ctyade3bdat85"]
 
 [ext_resource type="Script" uid="uid://bbjoyv6u2ip1c" path="res://main.gd" id="1_glv2v"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glv2v"]
-bg_color = Color(0.11764706, 0.10980392, 0.16862746, 1)
+[ext_resource type="Texture2D" uid="uid://b8v12y4vwpcbf" path="res://teto.bmp" id="2_uu6xs"]
 
 [node name="Control" type="Control" unique_id=337417755]
 layout_mode = 3
@@ -20,20 +18,24 @@ offset_right = 1153.0
 offset_bottom = 651.0
 color = Color(0.11644999, 0.1105, 0.17, 1)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=390732038]
+[node name="PFP" type="TextureRect" parent="." unique_id=390732038]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 24.895
+offset_right = 100.0
+offset_bottom = 124.895004
+texture = ExtResource("2_uu6xs")
 
-[node name="PopupPanel" type="PopupPanel" parent="." unique_id=711664811]
+[node name="PopupPanel" type="Window" parent="." unique_id=1963537251]
+transparent_bg = true
 oversampling_override = 1.0
 title = "Setup"
 initial_position = 1
 size = Vector2i(350, 375)
-unresizable = false
-borderless = false
+visible = false
+transparent = true
+minimize_disabled = true
+maximize_disabled = true
 force_native = true
-theme_override_styles/panel = SubResource("StyleBoxFlat_glv2v")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel" unique_id=110550630]
 offset_right = 350.0
@@ -53,6 +55,33 @@ layout_mode = 2
 layout_mode = 2
 text = "Path To Refrence Voice Bank"
 
-[node name="LineEdit" type="LineEdit" parent="PopupPanel/VBoxContainer" unique_id=2075003122]
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer" unique_id=394209042]
 layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="PopupPanel/VBoxContainer/HBoxContainer" unique_id=2075003122]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Path To Refrence Voice Bank"
+
+[node name="PopupRefBankEnter" type="Button" parent="PopupPanel/VBoxContainer/HBoxContainer" unique_id=1577619855]
+layout_mode = 2
+text = "Enter"
+
+[node name="Label" type="Label" parent="." unique_id=558124938]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Refrence Voice Bank"
+
+[node name="Name" type="Label" parent="." unique_id=1827997628]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 28.0
+offset_right = 267.0
+offset_bottom = 51.0
+text = "Name"
+
+[node name="SamplePlayer" type="AudioStreamPlayer" parent="." unique_id=1862375927]
+
+[connection signal="close_requested" from="PopupPanel" to="." method="_on_popup_panel_close_requested"]
+[connection signal="pressed" from="PopupPanel/VBoxContainer/HBoxContainer/PopupRefBankEnter" to="." method="_on_popup_ref_bank_enter_pressed"]
