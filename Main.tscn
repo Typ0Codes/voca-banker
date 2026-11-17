@@ -1,6 +1,39 @@
 [gd_scene format=3 uid="uid://ctyade3bdat85"]
 
 [ext_resource type="Script" uid="uid://bbjoyv6u2ip1c" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="FontFile" uid="uid://d18yubv24ygbo" path="res://Riks-Normal.otf" id="1_uu6xs"]
+[ext_resource type="Texture2D" uid="uid://b8v12y4vwpcbf" path="res://teto.bmp" id="3_r0du0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glv2v"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.67058825)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu6xs"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11048623, 0.02736685, 0.14109895, 0.8862745)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_glv2v"]
+default_font = ExtResource("1_uu6xs")
+Button/styles/disabled = SubResource("StyleBoxFlat_glv2v")
+Button/styles/normal = SubResource("StyleBoxFlat_uu6xs")
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_xenls"]
 
 [node name="Control" type="Control" unique_id=337417755]
 layout_mode = 3
@@ -9,14 +42,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_glv2v")
 script = ExtResource("1_glv2v")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1454118700]
 layout_mode = 0
-offset_left = -765.0
-offset_top = -185.0
-offset_right = 2123.0
-offset_bottom = 1025.0
+offset_left = -776.0
+offset_top = -305.0
+offset_right = 2112.0
+offset_bottom = 905.0
 color = Color(0.11644999, 0.1105, 0.17, 1)
 
 [node name="PFP" type="TextureRect" parent="." unique_id=390732038]
@@ -24,6 +58,14 @@ layout_mode = 0
 offset_top = 24.895
 offset_right = 100.0
 offset_bottom = 124.895004
+texture = ExtResource("3_r0du0")
+
+[node name="PFP2" type="TextureRect" parent="." unique_id=525772030]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 100.0
+offset_bottom = 255.0
+texture = ExtResource("3_r0du0")
 
 [node name="PopupPanel" type="Window" parent="." unique_id=1963537251]
 transparent_bg = true
@@ -80,11 +122,64 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Done"
 
+[node name="CharDialog" type="Window" parent="." unique_id=570510426]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Charachter.txt"
+initial_position = 1
+size = Vector2i(273, 280)
+visible = false
+transparent = true
+minimize_disabled = true
+maximize_disabled = true
+force_native = true
+
+[node name="SaveChar" type="Button" parent="CharDialog" unique_id=1210932349]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.5
+offset_top = -31.0
+offset_right = 24.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Save"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharDialog" unique_id=1624305342]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameEdit" type="LineEdit" parent="CharDialog/VBoxContainer" unique_id=302833559]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="ImageEdit" type="LineEdit" parent="CharDialog/VBoxContainer" unique_id=1377959221]
+layout_mode = 2
+placeholder_text = "Full Path to .bmp PFP"
+
+[node name="SampleEdit" type="LineEdit" parent="CharDialog/VBoxContainer" unique_id=1921849802]
+layout_mode = 2
+placeholder_text = "Sample .WAV path"
+
+[node name="ExtraEdit" type="TextEdit" parent="CharDialog/VBoxContainer" unique_id=1833986995]
+custom_minimum_size = Vector2(269.79, 100.635)
+layout_mode = 2
+placeholder_text = "Extras"
+
 [node name="Label" type="Label" parent="." unique_id=558124938]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Refrence Voice Bank"
+
+[node name="Label2" type="Label" parent="." unique_id=656858224]
+layout_mode = 0
+offset_top = 133.0
+offset_right = 127.0
+offset_bottom = 156.0
+text = "Your Voice Bank"
 
 [node name="Name" type="Label" parent="." unique_id=1827997628]
 layout_mode = 0
@@ -92,6 +187,14 @@ offset_left = 109.0
 offset_top = 28.0
 offset_right = 267.0
 offset_bottom = 51.0
+text = "Name"
+
+[node name="Name2" type="Label" parent="." unique_id=342220538]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 156.0
+offset_right = 267.0
+offset_bottom = 179.0
 text = "Name"
 
 [node name="SamplePlayer" type="AudioStreamPlayer" parent="." unique_id=1862375927]
@@ -104,7 +207,105 @@ offset_right = 208.0
 offset_bottom = 83.0
 text = "Play Sample"
 
+[node name="PlayRefAudio" type="Button" parent="." unique_id=310754504]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -118.065
+offset_right = 81.5
+offset_bottom = -87.06494
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Refrence Audio"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=779875557]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -14.5
+offset_right = 60.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Record" type="Button" parent="HBoxContainer" unique_id=226687188]
+layout_mode = 2
+text = "Record"
+
+[node name="Playback" type="Button" parent="HBoxContainer" unique_id=1741897396]
+layout_mode = 2
+text = "Playback"
+
+[node name="Char" type="Button" parent="HBoxContainer" unique_id=203804454]
+layout_mode = 2
+text = "Edit Charchter Info"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=271148733]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 23.75
+offset_right = 39.0
+offset_bottom = 52.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Next" type="Button" parent="HBoxContainer2" unique_id=551942863]
+layout_mode = 2
+text = "Next"
+
+[node name="Prev" type="Button" parent="HBoxContainer2" unique_id=2049896005]
+layout_mode = 2
+text = "prev"
+
+[node name="RefWavPlayer" type="AudioStreamPlayer" parent="." unique_id=657239053]
+bus = &"Record"
+
+[node name="Recorder" type="AudioStreamPlayer" parent="." unique_id=724994218]
+stream = SubResource("AudioStreamMicrophone_xenls")
+
+[node name="MicPlayer" type="AudioStreamPlayer" parent="." unique_id=808634807]
+
+[node name="TakePlayer" type="AudioStreamPlayer" parent="." unique_id=2044461989]
+
+[node name="ItemLabel" type="Label" parent="." unique_id=391994759]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -166.645
+offset_right = 58.5
+offset_bottom = -87.645004
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "ItemLabel
+"
+
 [connection signal="close_requested" from="PopupPanel" to="." method="_on_popup_panel_close_requested"]
 [connection signal="pressed" from="PopupPanel/VBoxContainer/HBoxContainer/PopupRefBankEnter" to="." method="_on_popup_ref_bank_enter_pressed"]
 [connection signal="pressed" from="PopupPanel/PopupDone" to="." method="_on_popup_done_pressed"]
+[connection signal="close_requested" from="CharDialog" to="." method="_on_popup_panel_close_requested"]
+[connection signal="pressed" from="CharDialog/SaveChar" to="." method="_on_save_char_button_pressed"]
 [connection signal="pressed" from="SamplePlayButton" to="." method="_on_sample_play_button_pressed"]
+[connection signal="pressed" from="PlayRefAudio" to="." method="_on_play_ref_audio_pressed"]
+[connection signal="pressed" from="HBoxContainer/Record" to="." method="_on_record_pressed"]
+[connection signal="pressed" from="HBoxContainer/Playback" to="." method="_on_playback_pressed"]
+[connection signal="pressed" from="HBoxContainer/Char" to="." method="_on_char_button_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Prev" to="." method="_on_prev_pressed"]
